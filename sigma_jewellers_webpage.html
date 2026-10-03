@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigma Jewellers | Luxury Fine Jewelry</title>
+    <style>
+        :root {
+            --primary: #111111;
+            --accent: #d4af37;
+            --text: #333333;
+            --bg: #fdfdfd;
+            --card-bg: #ffffff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', 'Poppins', 'Segoe UI', sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 2rem;
+        }
+        nav ul li a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ddd;
+            max-width: 600px;
+        }
+        .btn {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        .section {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            letter-spacing: 1px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-img {
+            height: 300px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+        }
+        .card-info {
+            padding: 1.5rem;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .card-price {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        footer {
+            background-color: var(--primary);
+            color: #aaa;
+            padding: 3rem 5% 1.5rem;
+            text-align: center;
+            border-top: 4px solid var(--accent);
+        }
+        footer p {
+            margin-bottom: 1rem;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 4px;
+            text-align: center;
+            max-width: 400px;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">SIGMA <span>JEWELLERS</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Crafted Perfection</h1>
+        <p>Discover timeless luxury and handcrafted elegance with our signature collections.</p>
+        <button class="btn" onclick="openModal('Exclusive Collection Exploration')">Explore Now</button>
+    </section>
+
+    <section id="collection" class="section">
+        <h2 class="section-title">Our Featured Masterpieces</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-img">💍</div>
+                <div class="card-info">
+                    <h3 class="card-title">Solitaire Diamond Ring</h3>
+                    <div class="card-price">$4,500</div>
+                    <button class="btn" onclick="openModal('Solitaire Diamond Ring')">View Details</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">📿</div>
+                <div class="card-info">
+                    <h3 class="card-title">Elegance Gold Necklace</h3>
+                    <div class="card-price">$6,200</div>
+                    <button class="btn" onclick="openModal('Elegance Gold Necklace')">View Details</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">💎</div>
+                <div class="card-info">
+                    <h3 class="card-title">Classic Diamond Earrings</h3>
+                    <div class="card-price">$2,900</div>
+                    <button class="btn" onclick="openModal('Classic Diamond Earrings')">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section" style="background-color: #f7f7f7;">
+        <h2 class="section-title">The Heritage of Sigma</h2>
+        <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: #555;">
+            For generations, Sigma Jewellers has stood as a beacon of unmatched luxury, crafting exquisite statements of art out of gold, diamonds, and precious gemstones. Every piece tells a story of flawless execution, timeless romance, and eternal sophistication.
+        </p>
+    </section>
+
+    <footer>
+        <div class="footer-links" style="margin-bottom: 1.5rem;">
+            <a href="#home">Home</a>
+            <a href="#collection">Collection</a>
+            <a href="#about">About</a>
+        </div>
+        <p>&copy; 2026 Sigma Jewellers. All Rights Reserved.</p>
+    </footer>
+
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle" style="margin-bottom: 1rem;">Item Details</h3>
+            <p style="margin-bottom: 1.5rem;">Thank you for your interest. Our luxury consultants are waiting to assist you with this selection.</p>
+            <button class="btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(itemName) {
+            document.getElementById('modalTitle').innerText = itemName;
+            document.getElementById('itemModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('itemModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById('itemModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
